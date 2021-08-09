@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Video Action Recognition</title>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/mediainfo.js/dist/mediainfo.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Video Action Recognition - Exploratory Analysis</h1>
+        <h2>Choose Data Set</h2>
+        <form action="#">
+            <fieldset>
+                <label for="dataset">Select a dataset</label>
+                <select name="dataset" id="dataset">
+                    <option selected="selected">smth-smth-v2</option>
+                    <option>charades</option>
+                </select>
+            </fieldset>
+        </form>
+        <p id="dataset-exp"></p>
+        <input type="file" accept="video/*" id="fileinput"/>
+        <p id="progress"></p>
+        <div id="content"></div>
+
+        <div class="splide" id="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer" id="results">Move mouse over image to show mouse location and pixel value and alpha</div>
+
+        <script src="main.js"></script>
+        <textarea width="50vw" height="auto" id="output"></textarea>
+        <script type="text/javascript" src="./mediainfo.js"></script>
+
+        <script>
+            $(function() {
+                $("#dataset").selectmenu({
+                    change: function( event, data ) {
+                        console.log(data.item.value);
+                        if(data.item.value === "smth-smth-v2") $("#dataset-exp").html("Extension: webm <br> Dimensions: 428 × 240 <br> Frame rate: 12 fps");
+                        if(data.item.value === "charades") $("#dataset-exp").html("Extension: mp4 <br> Dimensions: 224 × 224 <br> Frame rate: 30 fps");
+                    }
+                });
+            });
+
+        </script>
+
+    </div>
+</body>
+
+
+</html>

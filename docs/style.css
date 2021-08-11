@@ -28,8 +28,6 @@ p {
     overflow: hidden;
 }
 
-.firstsection {}
-
 h1 {
     color: #000;
     text-transform: uppercase;
@@ -78,7 +76,7 @@ li {
     list-style-type: none;
 }
 
-img {
+img.doc {
     display: block;
     position: absolute;
     left: 0;

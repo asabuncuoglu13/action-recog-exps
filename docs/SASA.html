@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <base target="_top">
+    <title>Stand Alone Self Attention</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <h3>Stand Alone Sef Attention in Vision Models</h3>
+
+    <div class="section">
+
+        <img src="media/1.png">
+        <p>
+            → The paper is from the Google Brain team.
+            <br>→ Parmar and Waswani are the main authors of Attention is All You Need, as we all know it is a seminal work and has been cited more than 20K.
+            <br>→ Here Ramachandran, Parmar, and Waswani have equal contributions to this work.
+        </p>
+    </div>
+
+    <h3>Aim</h3>
+
+    <div class="section">
+        <img src="media/2.png">
+        <p>
+            → We know that there is an effort to capture the long-range dependencies in vision tasks. Recent approaches generally use the attention mechanism to augment the capabilities of convolutions. Yet, these mechanisms could not demonstrate the success they
+            showed in sequence modeling and generative modeling tasks.
+            <br>→ This paper explores whether attention can be a stand-alone primitive for vision models instead of serving as just an augmentation on top of convolutions.
+            <br>→ The authors experimented using pure self-attention to verify that self-attention can be an effective stand-alone layer. In their experiments, replacing all instances of spatial convolutions of the ResNet model outperforms the baseline
+            on ImageNet classification with 12% fewer FLOPS and 29% fewer parameters. But these outperforming results are from experiments where they use convolutional layers in the beginning layers of the architecture.
+        </p>
+    </div>
+
+
+    <h3>Contribution</h3>
+
+
+    <div class="section">
+        <img src="media/3.png">
+        <p>
+            → Similar to a convolution, given a pixel, they first extract a local region of pixels with spatial extent k centered around this pixel. They call it the memory block. In this figure, the spatial extent, k, is 3.
+            <br>→ The query is the center pixel (or it can be a square matrix in the center), keys and values are learned transformation of the memory block. So, simply, this local self-attention mechanism is aggregated spatial information using a combination
+            of parametrized (softmax) content interactions.
+            <br>→ This form of local attention differs from prior implementations of attention mechanisms in vision tasks where they use patches of images in global attention between all pixels.
+            <br>→ The authors, here, state that global attention can only be used after significant spatial downsampling has been applied to the input because it is computationally expensive, which prevents its usage across all layers in a fully attentional
+            model.
+
+        </p>
+
+    </div>
+
+    <h3> Positional Information</h3>
+
+
+    <div class="section">
+        <img src="media/4.png">
+        <p>
+            → As you can realize, no positional information is encoded in attention, which limits the expressivity for vision tasks. In the paper, they also introduce relative attention, which is used to capture the positional information.
+            <br>→ In the formula, infusing the relative position information is obtained by multiplying the relative matrix with the query. In the end, the logit measuring the similarity between the query and an element is modulated both by the content
+            of the element and the relative distance of the element from the query.
+        </p>
+    </div>
+
+    <h3>Fully Attentional ResNet</h3>
+
+
+    <div class="section">
+        <img src="media/5.png">
+        <p>
+            → Now, the question is how to construct a fully attentional architecture.
+            <br>→ They transformed the ResNet family of architectures. In the figure, I shared ResNet-18 as an example.
+            <br>→ The core building block of a ResNet is a bottleneck block with a structure of a 1 × 1 down-projection convolution, a 3 × 3 spatial convolution, and a 1 × 1 up-projection convolution, followed by a residual connection between the input
+            of the block and the output of the last convolution in the block.
+            <br>→ The proposed transform swaps the 3 × 3 spatial convolutions with a self-attention layer. All other structure, including the number of layers and when spatial downsampling is applied, is preserved.
+            <br>→ The authors shared that this transformation strategy is simple but possibly suboptimal. We need an architecture search to find the optimal architecture.
+
+            <br><b>Replacing the Convolutional Stem</b>
+            <br>→ The initial layers of convolutional networks (stem layer) play a critical role in learning local features such as edges. The information is useful to identify global objects. Due to input images being large, the stem typically differs
+            from the core block, focusing on lightweight operations with spatial downsampling. For example, in this architecture, the stem is a 7 × 7 convolution with stride 2 followed by 3 × 3 max-pooling with stride 2.
+            <br>→ In the paper, experiments show that using the self-attention form in the stem layer underperforms compared to using the convolution stem of ResNet. So, is the fully attentional model useful? No, at least learning convolutional features
+            in the early layers significantly drops the training time and prediction accuracy.
+
+
+        </p>
+
+    </div>
+
+
+    <h3>Experiments: ResNet on ImageNet</h3>
+
+
+    <div class="section">
+        <img src="media/6.png">
+        <p>
+            → Experiments are performed on the ImageNet classification task which contains more than a million training images and 50K test images.
+            <br>→ Here, the baseline is a standard ResNet, Conv-stem + Attention uses spatial convolution in the stem and attention everywhere else, and Full Attention uses attention everywhere including the stem. The attention models outperform the baseline
+            across all depths while having 12% fewer FLOPS and 29% fewer parameters.
+            <br>→ In the below figure, you can see the comparison of parameters and FLOPS against accuracy on ImageNet classification across a range of network widths for ResNet-50. Here they again showed that attention models have fewer parameters and
+            FLOPS while improving upon the accuracy of the baseline.
+
+
+        </p>
+
+    </div>
+
+
+    <h3>Which components are important in attention?</h3>
+
+
+    <div class="section">
+        <img src="media/7.png">
+        <p>
+            → The authors also added some suggestions while creating attentional models. An important note is all these results are from attention models that use the convolution stem.
+            <ul>
+                <li>* While using small k, such as k = 3, has a large negative impact on performance, the improvements of using a larger k optimize around k = 11.</li>
+                <li>* Using any notion of positional encoding is beneficial over using none.</li>
+            </ul>
+            → To summarize, this work introduces a new self-attention mechanism for images, yet they also need to invest more research on exploring different architectures and attention operations to figure out the optimal training and test time and accuracies.
+        </p>
+
+    </div>
+
+
+</body>
+
+</html>

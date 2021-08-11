@@ -29,7 +29,7 @@
             </fieldset>
         </form>
         <p id="dataset-exp"></p>
-        <input type="file" accept="video/*" id="fileinput"/>
+        <input type="file" accept="video/*" id="fileinput" />
         <p id="progress"></p>
         <div id="content"></div>
 
@@ -49,14 +49,13 @@
         <script>
             $(function() {
                 $("#dataset").selectmenu({
-                    change: function( event, data ) {
+                    change: function(event, data) {
                         console.log(data.item.value);
-                        if(data.item.value === "smth-smth-v2") $("#dataset-exp").html("Extension: webm <br> Dimensions: 428 × 240 <br> Frame rate: 12 fps");
-                        if(data.item.value === "charades") $("#dataset-exp").html("Extension: mp4 <br> Dimensions: 224 × 224 <br> Frame rate: 30 fps");
+                        if (data.item.value === "smth-smth-v2") $("#dataset-exp").html("Extension: webm <br> Dimensions: 428 × 240 <br> Frame rate: 12 fps");
+                        if (data.item.value === "charades") $("#dataset-exp").html("Extension: mp4 <br> Dimensions: 224 × 224 <br> Frame rate: 30 fps");
                     }
                 });
             });
-
         </script>
 
     </div>

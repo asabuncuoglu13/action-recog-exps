@@ -13,3 +13,8 @@ This repo explores the recent work on action recognition from videos.
 
 - [Summary of Standalone-Self-Attention Paper](https://asabuncuoglu13.github.io/action-recog-exps/SASA.html)
 - [Video Datasets Interactive](https://asabuncuoglu13.github.io/action-recog-exps/)
+
+## Credits
+
+- [SASA Implementation @leaderj1001 ](https://github.com/leaderj1001/Stand-Alone-Self-Attention)
+- [Improved AttentionLite Implementation @20171130](https://github.com/20171130/AttentionLite)

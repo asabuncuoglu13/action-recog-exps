@@ -16,49 +16,116 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <h1>Video Action Recognition - Exploratory Analysis</h1>
-        <h2>Choose Data Set</h2>
-        <form action="#">
-            <fieldset>
-                <label for="dataset">Select a dataset</label>
-                <select name="dataset" id="dataset">
-                    <option selected="selected">smth-smth-v2</option>
-                    <option>charades</option>
-                </select>
-            </fieldset>
-        </form>
-        <p id="dataset-exp"></p>
-        <input type="file" accept="video/*" id="fileinput" />
-        <p id="progress"></p>
-        <div id="content"></div>
-
-        <div class="splide" id="splide">
-            <div class="splide__track">
-                <ul class="splide__list">
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer" id="results">Move mouse over image to show mouse location and pixel value and alpha</div>
-
-        <script src="js/main.js"></script>
-        <textarea width="50vw" height="auto" id="output"></textarea>
-        <script type="text/javascript" src="js/mediainfo.js"></script>
-
-        <script>
-            $(function() {
-                $("#dataset").selectmenu({
-                    change: function(event, data) {
-                        console.log(data.item.value);
-                        if (data.item.value === "smth-smth-v2") $("#dataset-exp").html("Extension: webm <br> Dimensions: 428 × 240 <br> Frame rate: 12 fps");
-                        if (data.item.value === "charades") $("#dataset-exp").html("Extension: mp4 <br> Dimensions: 224 × 224 <br> Frame rate: 30 fps");
-                    }
-                });
-            });
-        </script>
-
+    <h1>Video Action Recognition - Exploratory Analysis</h1>
+    <p class="info">This page has some quick info and simple utility functions to help me quickly remember the basic elements of video datasets for action recognition. If you found this page, and want to find out more about the action recognition datasets you can
+        check <a href="https://paperswithcode.com/datasets?mod=videos&task=action-recognition-in-videos&page=1">Paper with Code's dataset search page</a></p>
+    <h2>Choose Data Set</h2>
+    <form action="#">
+        <fieldset>
+            <label for="dataset">Select a dataset</label>
+            <select name="dataset" id="dataset">
+                <option selected="selected">smth-smth-v2</option>
+                <option>charades</option>
+                <option>moments-in-time</option>
+            </select>
+        </fieldset>
+    </form>
+    <div>Official page:
+        <p id="official"><a href="https://20bn.com/datasets/something-something">https://20bn.com/datasets/something-something</a></p>
     </div>
+    <div>Paper with code page:
+        <p id="pwithcode"><a href="https://paperswithcode.com/dataset/something-something-v2">https://paperswithcode.com/dataset/something-something-v2</a></p>
+    </div>
+    <p id="dataset-exp">Extension: webm <br> Resolution: 240p <br> Frame rate: 12 fps</p>
+
+    <div id="videos">
+        <video width="320" height="240" autoplay controls>
+            <source src="../samples/smth-smth/199986.webm" type="video/mp4">
+        </video>
+        <video width="320" height="240" autoplay controls>
+            <source src="../samples/smth-smth/78687.webm" type="video/mp4">
+        </video>
+        <video width="320" height="240" autoplay controls>
+            <source src="../samples/smth-smth/8225.webm" type="video/mp4">
+        </video>
+    </div>
+
+    <h2>Upload a Video to See the Media Info and Frames</h2>
+
+    <input type="file" accept="video/*" id="fileinput"/>
+    <p id="progress"></p>
+    <div id="content"></div>
+
+    <div class="splide" id="splide">
+        <div class="splide__track">
+            <ul class="splide__list">
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer" id="results">Move mouse over image to show mouse location and pixel value and alpha</div>
+
+    <script src="js/main.js"></script>
+
+    <h2>Media Info:</h2>
+    <textarea id="output" rows="12"></textarea>
+    <script type="text/javascript" src="js/mediainfo.js"></script>
+
+    <script>
+        $(function () {
+            $("#dataset").selectmenu({
+                change: function (event, data) {
+                    console.log(data.item.value);
+                    if (data.item.value === "smth-smth-v2") {
+                        $("#official").html('<a href="https://20bn.com/datasets/something-something">https://20bn.com/datasets/something-something</a>');
+                        $("#pwithcode").html('<a href="https://paperswithcode.com/dataset/something-something-v2">https://paperswithcode.com/dataset/something-something-v2</a>');
+                        $("#dataset-exp").html('Extension: webm <br> Resolution: 240p <br> Frame rate: 12 fps');
+                        $("#videos").html(
+                            '<video width="320" height="240" autoplay controls>\n' +
+                            '    <source src="../samples/smth-smth/199986.webm" type="video/mp4">\n' +
+                            '</video>\n' +
+                            '<video width="320" height="240" autoplay controls>\n' +
+                            '    <source src="../samples/smth-smth/78687.webm" type="video/mp4">\n' +
+                            '</video>\n' +
+                            '<video width="320" height="240" autoplay controls>\n' +
+                            '    <source src="../samples/smth-smth/8225.webm" type="video/mp4">\n' +
+                            '</video>');
+                    }
+                    if (data.item.value === "charades") {
+                        $("#official").html('<a href="https://prior.allenai.org/projects/charades">https://prior.allenai.org/projects/charades</a>');
+                        $("#pwithcode").html('<a href="https://paperswithcode.com/dataset/charades">https://paperswithcode.com/dataset/charades</a>');
+                        $("#dataset-exp").html('Extension: mp4 <br> Resolution: 480p <br> Frame rate: 25 fps');
+                        $("#videos").html(
+                            '<video width="320" height="240" autoplay controls>\n' +
+                            '    <source src="../samples/charades/C4KZ4.mp4" type="video/mp4">\n' +
+                            '</video>\n' +
+                            '<video width="320" height="240" autoplay controls>\n' +
+                            '    <source src="../samples/charades/HY9LW.mp4" type="video/mp4">\n' +
+                            '</video>\n' +
+                            '<video width="320" height="240" autoplay controls>\n' +
+                            '    <source src="../samples/charades/TPJJJ.mp4" type="video/mp4">\n' +
+                            '</video>');
+                    }
+                    if (data.item.value === "moments-in-time") {
+                        $("#official").html('<a href="http://moments.csail.mit.edu/">http://moments.csail.mit.edu/.</a>');
+                        $("#pwithcode").html('<a href="https://paperswithcode.com/dataset/moments-in-time">https://paperswithcode.com/dataset/moments-in-time</a>');
+                        $("#dataset-exp").html('Each video folder is a label. Here you can see three randomly selected examples from the "falling" folder. <br> Extension: mp4 <br> Resolution: 1280p <br> Frame rate: 30 fps');
+                        $("#videos").html(
+                            '<video width="320" height="240" autoplay controls>\n' +
+                            '    <source src="../samples/mnts-in-time/yt-KQ9w0JYmvK8_1.mp4" type="video/mp4">\n' +
+                            '</video>\n' +
+                            '<video width="320" height="240" autoplay controls>\n' +
+                            '    <source src="../samples/mnts-in-time/yt-VJdjGvN9GfE_64.mp4" type="video/mp4">\n' +
+                            '</video>\n' +
+                            '<video width="320" height="240" autoplay controls>\n' +
+                            '    <source src="../samples/mnts-in-time/yt-zZyWxbojYH8_943.mp4" type="video/mp4">\n' +
+                            '</video>');
+                    }
+                }
+            });
+        });
+    </script>
+
 </body>
 
 

@@ -11,9 +11,9 @@ class SomethingSomethingV2(VideoFolder):
     def __init__(self, root, mode='train'):
         upscale_size = int(84 * 1.1)
         assert mode in ['train', 'test', 'validation']
-        labels_path = os.path.join(root, 'something-something-v2-labels.json')
-        mode_path = os.path.join(root, f'something-something-v2-{mode}.json')
-        videos_path = os.path.join(root, '20bn-something-something-v2')
+        labels_path = os.path.join(root, 'labels/something-something-v2-labels.json')
+        mode_path = os.path.join(root, f'labels/something-something-v2-{mode}.json')
+        videos_path = os.path.join(root, 'videos/')
 
         transform_pre = ComposeMix([
             [RandomRotationVideo(20), "vid"],

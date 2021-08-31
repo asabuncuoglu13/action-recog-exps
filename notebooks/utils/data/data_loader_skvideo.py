@@ -121,9 +121,9 @@ if __name__ == '__main__':
                         [torchvision.transforms.ToTensor(), "img"],
                          ])
 
-    loader = VideoFolder(root="/data-ssd1/20bn-something-something-v2/videos",
-                         json_file_input="/data-ssd1/20bn-something-something-v2/annotations/something-something-v2-train.json",
-                         json_file_labels="/data-ssd1/20bn-something-something-v2/annotations/something-something-v2-labels.json",
+    loader = VideoFolder(root="/datasets/20bn_something_something/v2/videos",
+                         json_file_input="/datasets/20bn_something_something/v2/labels/something-something-v2-train.json",
+                         json_file_labels="/datasets/20bn_something_something/v2/labels/something-something-v2-labels.json",
                          clip_size=36,
                          nclips=1,
                          step_size=1,

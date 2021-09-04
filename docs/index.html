@@ -13,12 +13,14 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="https://unpkg.com/mediainfo.js/dist/mediainfo.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script src="https://kit.fontawesome.com/59c4cce071.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <div class="info">If the page is not properly rendered on <i class="fab fa-firefox-browser"></i> Firefox, open with <i class="fab fa-chrome"></i> Chrome.</div>
     <h1>Video Action Recognition - Exploratory Analysis</h1>
-    <p class="info">This page has some quick info and simple utility functions to help me quickly remember the basic elements of video datasets for action recognition. If you found this page, and want to find out more about the action recognition datasets you can
-        check <a href="https://paperswithcode.com/datasets?mod=videos&task=action-recognition-in-videos&page=1">Paper with Code's dataset search page</a></p>
+    <p class="info">This page has some quick info and simple utility functions to help me quickly remember the basic elements of video datasets for action recognition. If you found this page, and want to find out more about the action recognition datasets you can check
+        <a href="https://paperswithcode.com/datasets?mod=videos&task=action-recognition-in-videos&page=1">Paper with Code's dataset search page</a></p>
     <h2>Choose Data Set</h2>
     <form action="#">
         <fieldset>
@@ -39,20 +41,20 @@
     <p id="dataset-exp">Extension: webm <br> Resolution: 240p <br> Frame rate: 12 fps</p>
 
     <div id="videos">
-        <video width="320" height="240" autoplay controls>
-            <source src="../samples/smth-smth/199986.webm" type="video/mp4">
+        <video controls width="320" height="240" muted>
+            <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/smth-smth/199986.webm?raw=true" type="video/webm">
         </video>
-        <video width="320" height="240" autoplay controls>
-            <source src="../samples/smth-smth/78687.webm" type="video/mp4">
+        <video controls width="320" height="240" muted>
+            <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/smth-smth/78687.webm?raw=true" type="video/webm">
         </video>
-        <video width="320" height="240" autoplay controls>
-            <source src="../samples/smth-smth/8225.webm" type="video/mp4">
+        <video controls width="320" height="240" muted>
+            <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/smth-smth/8225.webm?raw=true" type="video/webm">
         </video>
     </div>
 
     <h2>Upload a Video to See the Media Info and Frames</h2>
 
-    <input type="file" accept="video/*" id="fileinput"/>
+    <input type="file" accept="video/*" id="fileinput" />
     <p id="progress"></p>
     <div id="content"></div>
 
@@ -72,23 +74,23 @@
     <script type="text/javascript" src="js/mediainfo.js"></script>
 
     <script>
-        $(function () {
+        $(function() {
             $("#dataset").selectmenu({
-                change: function (event, data) {
+                change: function(event, data) {
                     console.log(data.item.value);
                     if (data.item.value === "smth-smth-v2") {
                         $("#official").html('<a href="https://20bn.com/datasets/something-something">https://20bn.com/datasets/something-something</a>');
                         $("#pwithcode").html('<a href="https://paperswithcode.com/dataset/something-something-v2">https://paperswithcode.com/dataset/something-something-v2</a>');
                         $("#dataset-exp").html('Extension: webm <br> Resolution: 240p <br> Frame rate: 12 fps');
                         $("#videos").html(
-                            '<video width="320" height="240" autoplay controls>\n' +
-                            '    <source src="../samples/smth-smth/199986.webm" type="video/mp4">\n' +
+                            '<video controls width="320" height="240" muted >\n' +
+                            '    <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/smth-smth/199986.webm?raw=true" type="video/mp4">\n' +
                             '</video>\n' +
-                            '<video width="320" height="240" autoplay controls>\n' +
-                            '    <source src="../samples/smth-smth/78687.webm" type="video/mp4">\n' +
+                            '<video controls width="320" height="240" muted >\n' +
+                            '    <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/smth-smth/78687.webm?raw=true" type="video/mp4">\n' +
                             '</video>\n' +
-                            '<video width="320" height="240" autoplay controls>\n' +
-                            '    <source src="../samples/smth-smth/8225.webm" type="video/mp4">\n' +
+                            '<video controls width="320" height="240" muted >\n' +
+                            '    <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/smth-smth/8225.webm?raw=true" type="video/mp4">\n' +
                             '</video>');
                     }
                     if (data.item.value === "charades") {
@@ -96,14 +98,14 @@
                         $("#pwithcode").html('<a href="https://paperswithcode.com/dataset/charades">https://paperswithcode.com/dataset/charades</a>');
                         $("#dataset-exp").html('Extension: mp4 <br> Resolution: 480p <br> Frame rate: 25 fps');
                         $("#videos").html(
-                            '<video width="320" height="240" autoplay controls>\n' +
-                            '    <source src="../samples/charades/C4KZ4.mp4" type="video/mp4">\n' +
+                            '<video controls width="320" height="240" muted >\n' +
+                            '    <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/charades/C4KZ4.mp4?raw=true" type="video/mp4">\n' +
                             '</video>\n' +
-                            '<video width="320" height="240" autoplay controls>\n' +
-                            '    <source src="../samples/charades/HY9LW.mp4" type="video/mp4">\n' +
+                            '<video controls width="320" height="240" muted >\n' +
+                            '    <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/charades/HY9LW.mp4?raw=true" type="video/mp4">\n' +
                             '</video>\n' +
-                            '<video width="320" height="240" autoplay controls>\n' +
-                            '    <source src="../samples/charades/TPJJJ.mp4" type="video/mp4">\n' +
+                            '<video controls width="320" height="240" muted >\n' +
+                            '    <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/charades/TPJJJ.mp4?raw=true" type="video/mp4">\n' +
                             '</video>');
                     }
                     if (data.item.value === "moments-in-time") {
@@ -111,14 +113,14 @@
                         $("#pwithcode").html('<a href="https://paperswithcode.com/dataset/moments-in-time">https://paperswithcode.com/dataset/moments-in-time</a>');
                         $("#dataset-exp").html('Each video folder is a label. Here you can see three randomly selected examples from the "falling" folder. <br> Extension: mp4 <br> Resolution: 1280p <br> Frame rate: 30 fps');
                         $("#videos").html(
-                            '<video width="320" height="240" autoplay controls>\n' +
-                            '    <source src="../samples/mnts-in-time/yt-KQ9w0JYmvK8_1.mp4" type="video/mp4">\n' +
+                            '<video controls width="320" height="240" muted >\n' +
+                            '    <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/mnts-in-time/yt-KQ9w0JYmvK8_1.mp4?raw=true" type="video/mp4">\n' +
                             '</video>\n' +
-                            '<video width="320" height="240" autoplay controls>\n' +
-                            '    <source src="../samples/mnts-in-time/yt-VJdjGvN9GfE_64.mp4" type="video/mp4">\n' +
+                            '<video controls width="320" height="240" muted >\n' +
+                            '    <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/mnts-in-time/yt-VJdjGvN9GfE_64.mp4?raw=true" type="video/mp4">\n' +
                             '</video>\n' +
-                            '<video width="320" height="240" autoplay controls>\n' +
-                            '    <source src="../samples/mnts-in-time/yt-zZyWxbojYH8_943.mp4" type="video/mp4">\n' +
+                            '<video controls width="320" height="240" muted >\n' +
+                            '    <source src="https://github.com/asabuncuoglu13/action-recog-exps/blob/main/samples/mnts-in-time/yt-zZyWxbojYH8_943.mp4?raw=true" type="video/mp4">\n' +
                             '</video>');
                     }
                 }

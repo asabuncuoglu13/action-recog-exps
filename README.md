@@ -8,6 +8,9 @@ This repo explores the recent work on action recognition from videos.
 
 - [2D Self-Attention on CIFAR10](./notebooks/cifar10_torch_attn.ipynb)
 - [3D Self-Attention on MNIST3D](./notebooks/mnist_3dconv-attn.ipynb)
+- [3D Self-Attention on 20bn-smth-smth-v2](./notebooks/act-recog-smth-torch.ipynb)
+
+The slurm submittable python file of smth-smth-3d is: [3D Self-Attention on 20bn-smth-smth-v2 (Python)](./notebooks/main.py)
 
 ## Docs and Interactives
 
